@@ -34,7 +34,7 @@ class TodoChecker:
         try:
             # Get diff between base and head
             result = subprocess.run(
-                ["git", "diff", "origin/main...HEAD"],
+                ["git", "diff", "origin/master...HEAD"],
                 cwd=workspace_path,
                 capture_output=True,
                 text=True,
