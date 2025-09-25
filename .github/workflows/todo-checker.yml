@@ -1,0 +1,28 @@
+name: TODO Checker Example
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-todos:
+    runs-on: ubuntu-latest
+    name: Check for TODO comments
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Check for TODOs
+        id: todo-check
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          todo-pattern: 'TODO:'
+          comment-prefix: '💡 **TODO Found**'
+          
+      - name: Output results
+        run: |
+          echo "TODOs found: ${{ steps.todo-check.outputs.todos-found }}"
+          echo "Comments created: ${{ steps.todo-check.outputs.comments-created }}"

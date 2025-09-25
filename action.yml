@@ -1,0 +1,26 @@
+name: 'TODO Comment Checker'
+description: 'Search git diff for TODO comments and create PR comments'
+author: 'Your Name'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+  todo-pattern:
+    description: 'Pattern to search for TODO comments'
+    required: false
+    default: 'TODO:'
+  comment-prefix:
+    description: 'Prefix for PR comments'
+    required: false
+    default: '💡 **TODO Found**'
+
+outputs:
+  todos-found:
+    description: 'Number of TODO comments found'
+  comments-created:
+    description: 'Number of PR comments created'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
