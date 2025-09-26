@@ -1,3 +1,5 @@
+## This is vibe-coded repo and it doesn't work - Will probably be deleted at some point
+
 # TODO Comment Checker GitHub Action
 
 A GitHub Action that automatically searches git diffs for `TODO:` comments and creates pull request comments to highlight them.
