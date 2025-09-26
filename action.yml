@@ -22,5 +22,19 @@ outputs:
     description: 'Number of PR comments created'
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - name: Install Dependencies
+      run: |
+        ls
+        pwd
+        pip install -r requirements.txt
+      shell: bash
+    - name: Run TODO Checker
+      id: todo_checker
+      run: >
+        python src/todo_checker.py 
+        --github-token ${{ inputs.github-token }} 
+        --todo-pattern "${{ inputs.todo-pattern }}"
+        --comment-prefix "${{ inputs.comment-prefix }}"
+      shell: bash
